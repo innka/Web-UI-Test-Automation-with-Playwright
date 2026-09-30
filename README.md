@@ -48,7 +48,7 @@ Web UI Test Automation with Playwright/
 ├── README.md
 ├── requirements.txt
 ├── test_first.py
-└── .venv/             
+└── .venv/           
 ```
 
 ## ⚙️ Installation

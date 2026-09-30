@@ -86,7 +86,7 @@ et clique sur  **Submit** .
 
 ### Étant donné
 
-Un utilisateur se trouve sur la page de connexion.
+Un utilisateur se trouve sur la page de connexion
 
 ### Quand
 

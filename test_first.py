@@ -12,3 +12,4 @@ with sync_playwright() as playwright:
     time.sleep(1)
     browser.close()
  
+
