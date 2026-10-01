@@ -1,4 +1,8 @@
 # test_login.py
+#pytest --browser chromium
+import pytest
+
+from test_data.login_data import INVALID_USERNAMES , INVALID_PASSWORDS
 
 # test pour vérifier l'affichage des champs du formulaire de login
 def test_01_username_field_is_visible(login_page):
@@ -33,18 +37,18 @@ def test_07_bouton_log_out_visible(login_page):
     valid_login = login_page.login("student", "Password123")
     valid_login.verify_logout_button_visible()
 
+@pytest.mark.parametrize("username, expected_message", INVALID_USERNAMES)
 #Cas de test - LOGIN-08 - Se connecter avec un nom d'utilisateur incorrect
-def test_08_se_connecter_avec_nom_utilisateur_incorrect(login_page):
+def test_08_se_connecter_avec_nom_utilisateur_incorrect(login_page, username,  expected_message):
     # Implémenter le test pour vérifier le comportement en cas de nom d'utilisateur incorrect
-    invalid_login = login_page.login("wronguser", "Password123") 
-    # Vérifier que le message d'erreur approprié est affiché "Your username is invalid!"
+    invalid_login = login_page.login(username, "Password123")
     invalid_login.error_message_incorrect_username()
 
+@pytest.mark.parametrize("password, expected_message", INVALID_PASSWORDS)
 #Cas de test - LOGIN-09 - Se connecter avec un mot de passe incorrect
-def test_09_se_connecter_avec_mot_de_passe_incorrect(login_page):
+def test_09_se_connecter_avec_mot_de_passe_incorrect(login_page, password, expected_message):
     # Implémenter le test pour vérifier le comportement en cas de mot de passe incorrect
-    invalid_password = login_page.login("student", "WrongPassword") 
-    # Vérifier que le message d'erreur approprié est affiché "Your password is invalid!"
+    invalid_password = login_page.login("student", password)
     invalid_password.error_message_incorrect_password()
 
 #Cas de test - LOGIN-10 - Vérifier l'échec de connexion avec un Username incorrect (reste sur la page de connexion)
